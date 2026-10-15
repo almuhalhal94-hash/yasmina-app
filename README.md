@@ -11,5 +11,10 @@
 
 ## النشر على GitHub Pages
 1. Settings ← General ← Change visibility ← **Public** (Pages المجانية تحتاج مستودع عام).
-2. Settings ← Pages ← Source: **Deploy from a branch** ← Branch: `main` ← `/ (root)` ← Save.
+2. Settings ← Pages ← Source: **Deploy from a branch** ← اختر الفرع اللي فيه الملفات (`claude/modest-volta-52gl9z` أو `main` بعد الدمج) ← `/ (root)` ← Save.
 3. الرابط: `https://almuhalhal94-hash.github.io/yasmina-app/`
+
+## حقيبة المدرسة (`school-kit/`)
+- `مقترح-ياسمينة-مدرسة-المستقبل.pptx` — عرض المقترح للإدارة (12 شريحة).
+- `فيديو-تثبيت-ياسمينة.mp4` — فيديو عمودي 56 ثانية لأولياء الأمور: كيف تثبّت التطبيق على آيفون وأندرويد.
+- `رمز-QR-ياسمينة.png` — رمز يفتح رابط التطبيق.
