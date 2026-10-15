@@ -2,7 +2,7 @@
 const { chromium } = require('playwright'); const { spawn } = require('child_process');
 const FPS = 30, mode = process.argv[2];
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch(process.env.CHROME ? { executablePath: process.env.CHROME } : {});
   const p = await b.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
   const fs = require('fs'); if (fs.existsSync(__dirname + '/timeline.json')) await p.addInitScript(t => { window.TL = t }, JSON.parse(fs.readFileSync(__dirname + '/timeline.json', 'utf8')));
   p.on('pageerror', e => console.log('ERR', e.message));

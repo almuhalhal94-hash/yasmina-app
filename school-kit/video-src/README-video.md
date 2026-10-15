@@ -1,15 +1,16 @@
 # مصدر الفيديو التوجيهي
 
-1. `python3 timeline.py` — يبني `timeline.json` (وصوت `voice.wav` لو فيه `segs.json`).
-2. `NODE_PATH=<playwright> node render.js all silent.mp4` — يرسم الفيديو بالتوقيت.
-3. `python3 mix.py out.mp4` — يركّب الصوت والنقرات.
+## الطريقة السريعة (بصوت «لهجاتي»)
+ضع `a.mp3 b.mp3 c.mp3 d.mp3` في هذا المجلد ثم: `bash build.sh`
+يحتاج: python3 + numpy، ffmpeg، node + playwright (`npm i playwright && npx playwright install chromium`).
+(لو عندك كروم بمسار خاص: `CHROME=/path/to/chrome bash build.sh`)
 
-## عند وصول ملفات «لهجاتي» (a.mp3 b.mp3 c.mp3 d.mp3)
-- `parts.json` من `lines.json` (كل جزء = ملفه)، ثم `python3 voice_sync.py parts.json segs.json`.
-- راجع الأسطر المعلّمة «راجع»، ثم الخطوات 1 → 3.
+## الخطوات بالتفصيل
+1. `python3 voice_sync.py parts.json segs.json` — يقطّع كل ملف إلى جمله. راجع الأسطر المعلّمة «راجع»؛ لعرض الوقفات بدقة: `python3 voice_sync.py --sil a.mp3 -30dB 0.08`.
+2. `python3 timeline.py` — توقيت المشاهد من مدد الجمل + `voice.wav`.
+3. `node render.js all silent.mp4` — رسم الفيديو (`node render.js preview 5 30 60` لقطات للفحص).
+4. `python3 mix.py out.mp4` — الصوت + نقرات خفيفة، بلا موسيقى.
 
-## الصوت المولّد محليًا (بدون نت)
-`python3 tts.py <مجلد نموذج vits-piper-ar_JO-kareem-medium>` — يولّد `vo/L*.wav` و`segs.json` من `tts_lines.json` (نصوص مشكولة كاملة). النموذج من إصدارات sherpa-onnx على GitHub.
-
-## الصوت النسائي
-بعد `tts.py` شغّل `python3 fem.py` — يرفع طبقة الصوت ×1.8 ويزحزح الرنين ×1.17 (محلّل WORLD عبر pyworld) ويكتب `vo_f/` و`segs.json`، ثم `timeline.py` ← `render.js` ← `mix.py`.
+## ملفات
+- `lines.json` الجمل ومشاهدها · `parts.json` أي جمل في أي ملف · `video/index.html` المشاهد.
+- `tts.py` + `tts_lines.json` صوت محلي تجريبي (نموذج Piper عربي، رجالي) — غير معتمد.
