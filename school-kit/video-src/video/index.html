@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>ثبّتي ياسمينة</title>
+<style>
+@font-face{font-family:Kid;src:url(kid500.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Kid;src:url(kid700.woff2) format('woff2');font-weight:700 900}
+:root{--ink:#3b1636;--acc:#ff4fa3;--acc2:#ffb703;--mut:#8a6b86;--card:#fff}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#ffe1ee;font-family:Kid,sans-serif;color:var(--ink)}
+#bg{position:absolute;inset:0;background:radial-gradient(60% 40% at 80% 10%,#ffd6a8 0,transparent 70%),radial-gradient(70% 45% at 10% 95%,#ffc2e0 0,transparent 70%),linear-gradient(180deg,#fff0f6,#ffe1ee 55%,#ffd1e8)}
+.sc{position:absolute;inset:0;opacity:0;overflow:hidden}
+.w{display:inline-block;opacity:0;will-change:transform}
+.rib{position:absolute;top:96px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff;border-radius:999px;padding:16px 40px;font-weight:800;font-size:38px;color:#7a1f5c;box-shadow:0 0 0 5px #ffc2e0,0 16px 40px rgba(160,40,110,.15)}
+.ttl{position:absolute;left:70px;right:70px;text-align:center;font-weight:900;line-height:1.18}
+.phone{position:absolute;width:600px;height:1252px;border-radius:92px;background:#23162a;padding:20px;box-shadow:0 40px 90px rgba(120,30,90,.35)}
+.phone .scr{position:relative;width:100%;height:100%;border-radius:74px;overflow:hidden;background:#fff0f6}
+.phone .isl{position:absolute;top:34px;left:50%;width:150px;height:42px;margin-left:-75px;border-radius:24px;background:#23162a;z-index:3}
+.phone img.s{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.zoomer{position:absolute;inset:0;transform-origin:50% 50%}
+.ring{position:absolute;border:7px solid var(--acc);border-radius:30px;opacity:0}
+.tap{position:absolute;width:90px;height:90px;margin:-45px 0 0 -45px;border-radius:50%;background:rgba(255,79,163,.35);border:6px solid var(--acc);opacity:0}
+.chip{position:absolute;top:110px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#3b1636;color:#fff;border-radius:999px;padding:16px 44px;font-size:46px;font-weight:900}
+.step{position:absolute;top:240px;left:60px;right:60px;height:300px;display:flex;align-items:center;gap:34px}
+.step .n{flex:none;width:150px;height:150px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-size:96px;font-weight:900;box-shadow:0 14px 30px rgba(255,79,163,.35)}
+.step .t{font-size:64px;font-weight:900;line-height:1.25}
+.step .t b{color:#c2185b}
+.card{position:absolute;background:#fff;border-radius:60px;box-shadow:0 30px 80px rgba(160,40,110,.18)}
+.pill{display:inline-block;background:#fff;border-radius:999px;padding:14px 34px;font-weight:800;box-shadow:0 0 0 4px #ffc2e0}
+.lbl{position:absolute;width:380px;text-align:center;font-size:44px;font-weight:900;background:#fff;border-radius:999px;padding:12px 0;box-shadow:0 12px 30px rgba(160,40,110,.15)}
+.grid{position:absolute;inset:150px 46px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:46px 30px;align-content:start}
+.grid i{display:block;aspect-ratio:1;border-radius:30px;background:rgba(255,255,255,.55)}
+.grid .app{background:none;position:relative}
+.grid .app img{width:100%;border-radius:30px;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.grid .app span{position:absolute;top:104%;left:-20px;right:-20px;text-align:center;font-size:26px;font-weight:800;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.4)}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+
+<!-- 1 · الهوك -->
+<section class="sc" id="s1">
+  <div class="rib" id="s1rib">🏫 مدرسة المستقبل الابتدائية للبنات</div>
+  <div class="ttl" id="s1t1" style="top:250px;font-size:150px;color:#c2185b">ياسمينة 🌸</div>
+  <div class="ttl" id="s1t2" style="top:450px;font-size:76px">على جوال ابنتكم… في دقيقة</div>
+  <div class="phone" id="s1p" style="left:240px;top:660px"><div class="scr"><div class="isl"></div><img class="s" src="home.png"></div></div>
+</section>
+
+<!-- 2 · المحتوى -->
+<section class="sc" id="s2">
+  <div class="ttl" id="s2t" style="top:150px;font-size:76px">قرآن · مدرسة · إنجليزي</div>
+  <div class="ttl" id="s2t2" style="top:270px;font-size:52px;font-weight:800;color:#8a6b86">في ألعاب قصيرة تحبها ابنتكم</div>
+  <div class="phone" id="s2a" style="left:-60px;top:430px;transform-origin:50% 100%"><div class="scr"><div class="isl"></div><img class="s" src="abc-letter.png"></div></div>
+  <div class="phone" id="s2c" style="left:540px;top:430px;transform-origin:50% 100%"><div class="scr"><div class="isl"></div><img class="s" src="din-wudu.png"></div></div>
+  <div class="phone" id="s2b" style="left:240px;top:390px;transform-origin:50% 100%"><div class="scr"><div class="isl"></div><img class="s" src="tl-lesson.png"></div></div>
+  <div class="lbl" id="s2l" style="left:220px;width:640px;top:1750px">📖 تلاوتي · 🕌 ديني · 🔤 ABC</div>
+</section>
+
+<!-- 3 · الرابط -->
+<section class="sc" id="s3">
+  <div class="chip" id="s3c">الخطوة الأولى</div>
+  <div class="ttl" id="s3t" style="top:250px;font-size:84px">افتحوا رابط ياسمينة</div>
+  <div class="card" id="s3q" style="left:200px;top:480px;width:680px;height:680px;padding:60px"><img src="qr.png" style="width:100%;height:100%;display:block"><div id="scan" style="position:absolute;left:40px;right:40px;height:10px;border-radius:5px;background:var(--acc);top:60px"></div></div>
+  <div class="ttl" id="s3t2" style="top:1220px;font-size:56px;font-weight:800">امسحوا الرمز بكاميرا الجوال 📷</div>
+  <div class="ttl" id="s3l" style="top:1340px;font-size:40px"><span class="pill" style="direction:ltr;font-family:sans-serif;font-weight:700">almuhalhal94-hash.github.io/yasmina-app</span></div>
+  <div class="ttl" id="s3t3" style="top:1480px;font-size:46px;font-weight:700;color:#8a6b86">أو اضغطوا الرابط الذي وصلكم من المدرسة</div>
+</section>
+
+<!-- 4 · آيفون -->
+<section class="sc" id="s4">
+  <div class="chip" id="s4c">📱 آيفون وآيباد</div>
+  <div class="step" id="s4s"><div class="n" id="s4n">1</div><div class="t" id="s4x"></div></div>
+  <div class="phone" id="s4p" style="left:240px;top:600px"><div class="scr"><div class="isl"></div><div class="zoomer" id="s4z"><img class="s" src="install-ios.png"><div class="ring" id="s4r"></div><div class="tap" id="s4tap"></div></div></div></div>
+</section>
+
+<!-- 5 · أندرويد -->
+<section class="sc" id="s5">
+  <div class="chip" id="s5c">🤖 أندرويد</div>
+  <div class="step" id="s5s"><div class="n" id="s5n">1</div><div class="t" id="s5x"></div></div>
+  <div class="phone" id="s5p" style="left:240px;top:600px"><div class="scr"><div class="isl"></div><div class="zoomer" id="s5z"><img class="s" src="install-and.png"><div class="ring" id="s5r"></div><div class="tap" id="s5tap"></div></div></div></div>
+</section>
+
+<!-- 6 · النتيجة والختام -->
+<section class="sc" id="s6">
+  <div class="ttl" id="s6t" style="top:180px;font-size:74px">وصارت تطبيقًا على جوالكم 🌸</div>
+  <div class="phone" id="s6p" style="left:240px;top:420px"><div class="scr" style="background:linear-gradient(170deg,#ff9fd0,#c9a7ff 60%,#ffd6a8)"><div class="isl"></div>
+    <div class="grid" id="s6g"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><div class="app" id="s6app"><img src="icon.png"><span>ياسمينة</span></div><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="tap" id="s6tap" style="left:375px;top:690px"></div>
+    <img class="s" id="s6home" src="home.png" style="opacity:0">
+  </div></div>
+  <div class="ttl" id="s6b" style="top:1760px;font-size:44px;font-weight:800;color:#7a1f5c">بدون متجر · مجانًا · تشتغل بدون نت</div>
+</section>
+<section class="sc" id="s7">
+  <div class="ttl" id="s7t" style="top:200px;font-size:130px;color:#c2185b">ياسمينة 🌸</div>
+  <div class="ttl" id="s7t2" style="top:390px;font-size:58px">رفيقة كل طالبة في مدرسة المستقبل</div>
+  <div class="card" id="s7q" style="left:290px;top:560px;width:500px;height:500px;padding:44px"><img src="qr.png" style="width:100%;height:100%;display:block"></div>
+  <div class="ttl" id="s7l" style="top:1120px;font-size:36px"><span class="pill" style="direction:ltr;font-family:sans-serif;font-weight:700">almuhalhal94-hash.github.io/yasmina-app</span></div>
+  <div class="ttl" id="s7b" style="top:1260px;font-size:46px;font-weight:800;color:#8a6b86">🔒 كل التقدّم يبقى على جهاز ابنتكم · بلا حسابات ولا إعلانات</div>
+  <div class="rib" id="s7rib" style="top:1560px">🏫 مدرسة المستقبل الابتدائية للبنات</div>
+</section>
+
+<script>
+/* ---------- خط زمني حتمي: render(t) يرسم أي لحظة ---------- */
+const $ = id => document.getElementById(id);
+const cl = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const eo = x => 1 - Math.pow(1 - cl(x), 3);            // ease-out cubic (دخول)
+const io = x => { x = cl(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2 };
+const P = (t, s, d) => eo((t - s) / (d || .3));
+const lerp = (a, b, k) => a + (b - a) * k;
+// نص كلمة كلمة: نقسم مرة وحدة
+function words(el) { if (el.dataset.w) return; el.innerHTML = el.innerHTML.split(/(\s+)/).map(x => /^\s+$/.test(x) ? x : '<span class="w">' + x + '</span>').join(''); el.dataset.w = 1 }
+function wordsIn(el, t, s, gap) { words(el); el.querySelectorAll('.w').forEach((w, i) => { const k = P(t, s + i * (gap || .07), .28); w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 26}px) scale(${.95 + .05 * k})` }) }
+function fade(el, t, s, d, dy) { const k = P(t, s, d || .3); el.style.opacity = k; el.style.transform = (el.dataset.tf || '') + ` translateY(${(1 - k) * (dy == null ? 30 : dy)}px)` }
+// المشاهد: [بداية، نهاية]
+/* التوقيت يجي من timeline.json (مدد جمل الصوت الحقيقية)، وإلا القيم التقديرية */
+const TL = window.TL || { sc: { s1: [0, 4.6], s2: [4.6, 10.6], s3: [10.6, 16], s4: [16, 30], s5: [30, 44], s6: [44, 50.4], s7: [50.4, 56] }, dur: 56, steps: { s4: [17.4, 20.5, 23.6, 26.7], s5: [31.4, 34.5, 37.6, 40.7] } };
+const SC = TL.sc, DUR = TL.dur, STEPS = TL.steps;
+function scene(id, t) { const [a, b] = SC[id]; const el = $(id); if (t < a - .001 || t > b + .35) { el.style.opacity = 0; el.style.visibility = 'hidden'; return false }
+  el.style.visibility = 'visible'; const kin = id === 's1' ? 1 : P(t, a, .35), kout = t > b ? 1 - cl((t - b) / .35) : 1; el.style.opacity = Math.min(kin, kout); return true }
+// خطوات التثبيت: إطار الصف بإحداثيات لقطة 390×844 (من صفحة التثبيت نفسها)
+const ROWS = { ios: [[34, 329, 322, 78], [34, 419, 322, 78], [34, 509, 322, 78], [34, 599, 322, 105]], and: [[34, 302, 322, 78], [34, 392, 322, 78], [34, 482, 322, 105], [34, 599, 322, 105]] };
+const TXT = {
+  ios: ['افتحوا الرابط في <b>Safari</b>', 'اضغطوا زر <b>المشاركة</b> أسفل الشاشة', 'اختاروا <b>«إضافة إلى الشاشة الرئيسية»</b>', 'ثم اضغطوا <b>«إضافة»</b>'],
+  and: ['افتحوا الرابط في <b>Chrome</b>', 'اضغطوا <b>النقاط الثلاث ⋮</b> أعلى الشاشة', 'اختاروا <b>«تثبيت التطبيق»</b>', 'ثم اضغطوا <b>«تثبيت»</b>'] };
+const SCR = 560 / 390; // بكسل الشاشة لكل بكسل CSS باللقطة
+function steps(pre, os, t) {
+  const [a, sEnd] = SC[pre], ST = STEPS[pre], t0 = ST[0]; let i = 0; for (let k = 0; k < ST.length; k++) if (t >= ST[k]) i = k;
+  const ts = ST[i], per = (i < ST.length - 1 ? ST[i + 1] : sEnd) - ts;
+  fade($(pre + 'c'), t, a, .35, -20);
+  const ph = $(pre + 'p'); { const k = P(t, a + .1, .6); ph.style.transform = `translateY(${(1 - k) * 220}px) rotate(${(1 - k) * -4}deg)` }
+  const st = $(pre + 's'), n = $(pre + 'n'), x = $(pre + 'x');
+  if (t < t0) { st.style.opacity = 0; } else {
+    if (x.dataset.i !== String(i)) { x.dataset.i = i; x.dataset.w = ''; x.innerHTML = TXT[os][i]; n.textContent = i + 1 }
+    st.style.opacity = 1; const kn = P(t, ts, .3); n.style.transform = `scale(${.9 + .1 * kn})`; n.style.opacity = kn; wordsIn(x, t, ts + .1, .06);
+    const out = t > ts + per - .25 && i < 3 ? 1 - cl((t - (ts + per - .25)) / .25) : 1; st.style.opacity = out;
+  }
+  // زوم على الصف + حلقة + نقرة
+  const r = ROWS[os][i], cx = (r[0] + r[2] / 2) * SCR, cy = (r[1] + r[3] / 2) * SCR, z = $(pre + 'z');
+  const kz = t < t0 ? 0 : io((t - t0) / .7), zs = lerp(1, 1.22, kz);
+  // ننقل بين الصفوف بنعومة: موضع التركيز يمشي من الصف السابق
+  const prev = ROWS[os][Math.max(0, i - 1)], pk = i ? io((t - ts) / .6) : 1, fy = lerp((prev[1] + prev[3] / 2) * SCR, cy, pk);
+  z.style.transformOrigin = `280px ${fy}px`; z.style.transform = `scale(${zs})`;
+  const ring = $(pre + 'r'), kr = t < t0 ? 0 : P(t, ts + .35, .3);
+  ring.style.left = (r[0] * SCR - 10) + 'px'; ring.style.top = (r[1] * SCR - 10) + 'px'; ring.style.width = (r[2] * SCR + 20) + 'px'; ring.style.height = (r[3] * SCR + 20) + 'px'; ring.style.opacity = kr; ring.style.transform = `scale(${1.04 - .04 * kr})`;
+  const tp = $(pre + 'tap'), d = t - (ts + 1.0);
+  if (t >= t0 && d >= 0 && d < .8) { tp.style.left = ((r[0] + r[2] - 70) * SCR) + 'px'; tp.style.top = (cy) + 'px'; tp.style.opacity = 1 - d / .8; tp.style.transform = `scale(${.6 + d * 1.2})` } else tp.style.opacity = 0;
+}
+function render(t) {
+  // 1 · الهوك (أول فريم فيه محتوى)
+  if (scene('s1', t)) { $('s1rib').style.opacity = 1; wordsIn($('s1t1'), t, -.5, .1); wordsIn($('s1t2'), t, .4, .09);
+    const k = P(t, 0, 1.1); $('s1p').style.transform = `translateY(${(1 - k) * 300 - t * 6}px) rotate(${(1 - k) * 5}deg)`; $('s1p').style.opacity = .35 + .65 * k }
+  // 2 · المحتوى
+  if (scene('s2', t)) { const a = SC.s2[0]; wordsIn($('s2t'), t, a + .1, .1); wordsIn($('s2t2'), t, a + .7, .06);
+    [['s2b', 0, 0, .55], ['s2a', -9, .25, .82], ['s2c', 9, .4, .82]].forEach(([id, rot, dl, sc]) => { const k = P(t, a + .3 + dl, .6); $(id).style.transform = `translateY(${(1 - k) * 500}px) rotate(${rot * k}deg) scale(${sc})`; $(id).style.opacity = k });
+    fade($('s2l'), t, a + 1.4, .3) }
+  // 3 · الرابط
+  if (scene('s3', t)) { const a = SC.s3[0]; fade($('s3c'), t, a, .3, -20); wordsIn($('s3t'), t, a + .2, .08);
+    const k = P(t, a + .5, .5); $('s3q').style.opacity = k; $('s3q').style.transform = `scale(${.94 + .06 * k})`;
+    $('scan').style.top = (60 + 560 * (.5 - .5 * Math.cos((t - a) * 2.2))) + 'px'; $('scan').style.opacity = k * .8;
+    wordsIn($('s3t2'), t, a + 1.2, .07); fade($('s3l'), t, a + 1.9, .3); wordsIn($('s3t3'), t, a + 2.5, .06) }
+  if (scene('s4', t)) steps('s4', 'ios', t);
+  if (scene('s5', t)) steps('s5', 'and', t);
+  // 6 · النتيجة
+  if (scene('s6', t)) { const a = SC.s6[0]; wordsIn($('s6t'), t, a + .1, .09);
+    const k = P(t, a, .6); $('s6p').style.transform = `translateY(${(1 - k) * 200}px)`;
+    const ka = P(t, a + .8, .35); $('s6app').style.opacity = ka; $('s6app').style.transform = `scale(${.92 + .08 * ka})`;
+    const d = t - (a + 2.2), tp = $('s6tap'); if (d >= 0 && d < .8) { tp.style.opacity = 1 - d / .8; tp.style.transform = `scale(${.6 + d * 1.2})` } else tp.style.opacity = 0;
+    const kh = P(t, a + 2.7, .45); $('s6home').style.opacity = kh; $('s6home').style.transform = `scale(${.9 + .1 * kh})`;
+    fade($('s6b'), t, a + 3.2, .3) }
+  // 7 · الختام
+  if (scene('s7', t)) { const a = SC.s7[0]; wordsIn($('s7t'), t, a + .1, .1); wordsIn($('s7t2'), t, a + .5, .07);
+    const k = P(t, a + .6, .45); $('s7q').style.opacity = k; $('s7q').style.transform = `scale(${.94 + .06 * k})`;
+    fade($('s7l'), t, a + 1.1, .3); wordsIn($('s7b'), t, a + 1.5, .05); $('s7rib').dataset.tf = 'translateX(-50%)'; fade($('s7rib'), t, a + 2.2, .3) }
+}
+window.render = render; window.DUR = DUR;
+// أحداث المؤثرات الصوتية (نقرات خفيفة): بداية كل خطوة وكل نقرة
+window.SFX = (() => { const e = [];
+  ['s4', 's5'].forEach(p => STEPS[p].forEach(ts => { e.push(['pop', ts]); e.push(['tap', ts + 1.0]) }));
+  e.push(['tap', SC.s6[0] + 2.2]); e.push(['chime', SC.s6[0] + 2.7]); e.push(['pop', SC.s3[0] + .5]); return e })();
+render(0);
+</script>
+</body>
+</html>
