@@ -116,6 +116,7 @@ function fade(el, t, s, d, dy) { const k = P(t, s, d || .3); el.style.opacity = 
 /* التوقيت يجي من timeline.json (مدد جمل الصوت الحقيقية)، وإلا القيم التقديرية */
 const TL = window.TL || { sc: { s1: [0, 4.6], s2: [4.6, 10.6], s3: [10.6, 16], s4: [16, 30], s5: [30, 44], s6: [44, 50.4], s7: [50.4, 56] }, dur: 56, steps: { s4: [17.4, 20.5, 23.6, 26.7], s5: [31.4, 34.5, 37.6, 40.7] } };
 const SC = TL.sc, DUR = TL.dur, STEPS = TL.steps;
+const LS = (id, d) => { const l = (TL.lines || []).find(x => x.id === id); return l ? l.s : d };
 function scene(id, t) { const [a, b] = SC[id]; const el = $(id); if (t < a - .001 || t > b + .35) { el.style.opacity = 0; el.style.visibility = 'hidden'; return false }
   el.style.visibility = 'visible'; const kin = id === 's1' ? 1 : P(t, a, .35), kout = t > b ? 1 - cl((t - b) / .35) : 1; el.style.opacity = Math.min(kin, kout); return true }
 // خطوات التثبيت: إطار الصف بإحداثيات لقطة 390×844 (من صفحة التثبيت نفسها)
@@ -148,7 +149,7 @@ function steps(pre, os, t) {
 }
 function render(t) {
   // 1 · الهوك (أول فريم فيه محتوى)
-  if (scene('s1', t)) { $('s1rib').style.opacity = 1; wordsIn($('s1t1'), t, -.5, .1); wordsIn($('s1t2'), t, .4, .09);
+  if (scene('s1', t)) { $('s1rib').style.opacity = 1; wordsIn($('s1t1'), t, -.5, .1); wordsIn($('s1t2'), t, LS('L2', .4) - .1, .09);
     const k = P(t, 0, 1.1); $('s1p').style.transform = `translateY(${(1 - k) * 300 - t * 6}px) rotate(${(1 - k) * 5}deg)`; $('s1p').style.opacity = .35 + .65 * k }
   // 2 · المحتوى
   if (scene('s2', t)) { const a = SC.s2[0]; wordsIn($('s2t'), t, a + .1, .1); wordsIn($('s2t2'), t, a + .7, .06);

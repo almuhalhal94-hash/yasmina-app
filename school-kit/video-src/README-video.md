@@ -7,3 +7,6 @@
 ## عند وصول ملفات «لهجاتي» (a.mp3 b.mp3 c.mp3 d.mp3)
 - `parts.json` من `lines.json` (كل جزء = ملفه)، ثم `python3 voice_sync.py parts.json segs.json`.
 - راجع الأسطر المعلّمة «راجع»، ثم الخطوات 1 → 3.
+
+## الصوت المولّد محليًا (بدون نت)
+`python3 tts.py <مجلد نموذج vits-piper-ar_JO-kareem-medium>` — يولّد `vo/L*.wav` و`segs.json` من `tts_lines.json` (نصوص مشكولة كاملة). النموذج من إصدارات sherpa-onnx على GitHub.

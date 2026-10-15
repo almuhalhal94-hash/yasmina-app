@@ -7,8 +7,8 @@ W = lambda t: len(re.sub(r'[ً-ْٰـ]', '', t).replace(' ', ''))
 SR = 48000
 segs = json.load(open('segs.json')) if os.path.exists('segs.json') else None
 dur = [(b - a) for _, a, b in segs] if segs else [W(x['t']) / 13 for x in L]
-LEAD, GAP, TAIL, STEP_MIN = 0.5, 0.45, 0.8, 2.6
-EXTRA = {'s1': 0.4, 's2': 1.2, 's3': 1.6, 's6': 2.2, 's7': 2.6}   # وقت إضافي للمشهد البصري
+LEAD, GAP, TAIL, STEP_MIN = 0.4, 0.4, 0.6, 2.4
+EXTRA = {'s1': 0.2, 's2': 0.5, 's3': 0.8, 's6': 1.6, 's7': 2.0}   # وقت إضافي للمشهد البصري
 t = 0.0; sc = {}; steps = {'s4': [], 's5': []}; starts = []
 order = []
 for x in L:
