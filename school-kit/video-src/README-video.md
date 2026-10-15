@@ -10,3 +10,6 @@
 
 ## الصوت المولّد محليًا (بدون نت)
 `python3 tts.py <مجلد نموذج vits-piper-ar_JO-kareem-medium>` — يولّد `vo/L*.wav` و`segs.json` من `tts_lines.json` (نصوص مشكولة كاملة). النموذج من إصدارات sherpa-onnx على GitHub.
+
+## الصوت النسائي
+بعد `tts.py` شغّل `python3 fem.py` — يرفع طبقة الصوت ×1.8 ويزحزح الرنين ×1.17 (محلّل WORLD عبر pyworld) ويكتب `vo_f/` و`segs.json`، ثم `timeline.py` ← `render.js` ← `mix.py`.
