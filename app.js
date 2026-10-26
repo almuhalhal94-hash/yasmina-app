@@ -50,10 +50,37 @@ function aUrl(n,a,r){return 'https://everyayah.com/data/'+RECS[r||0]+'/'+p3(n)+p
 var ACACHE='yasmina-audio-v1';
 function audioSrc(n,a,r){var url=aUrl(n,a,r);if(!window.caches)return Promise.resolve(url);return caches.open(ACACHE).then(function(c){return c.match(url).then(function(m){if(m)return m.blob().then(function(b){return URL.createObjectURL(b)});return fetch(url).then(function(res){if(!res.ok)throw 0;c.put(url,res.clone());return res.blob().then(function(b){return URL.createObjectURL(b)})}).catch(function(){return url})})}).catch(function(){return url})}
 var AU=new Audio();AU.preload='auto';var playTok=0;
-function stopAudio(){playTok++;try{AU.pause()}catch(e){}if(window.speechSynthesis)try{speechSynthesis.cancel()}catch(e){}}
+function stopAudio(){playTok++;try{AU.pause()}catch(e){}if(window.speechSynthesis)try{speechSynthesis.cancel()}catch(e){}if(PL&&!PL.done){try{PL.onAt(-1)}catch(e){}PL.finish(false)}PB.hide()}
 function playAyah(n,a){var tok=playTok;return new Promise(function(res){var tried=0;function go(r){audioSrc(n,a,r).then(function(src){if(tok!==playTok){res(false);return}AU.src=src;AU.onended=function(){res(true)};AU.onerror=function(){if(r+1<RECS.length)go(r+1);else{toast('ما قدرت أشغّل الصوت، تأكد من النت أول مرة');res(false)}};AU.play().catch(function(){res(false)})})}go(0)})}
-/* plays a list of [orderIndex, ayahIdx] `reps` times; onAt(k) highlights */
-function playList(list,reps,onAt,onRep){var tok=++playTok,rep=0;return new Promise(function(res){function step(k){if(tok!==playTok){res(false);return}if(k>=list.length){rep++;if(onRep)onRep(rep);if(rep>=reps){onAt(-1);res(true);return}setTimeout(function(){step(0)},700);return}onAt(k);var it=list[k],n=QURAN[it[0]].n;var pre=(it[1]===0&&n!==1&&n!==9&&k===0)?playAyah(1,1):Promise.resolve(true);pre.then(function(){if(tok!==playTok){res(false);return}return playAyah(n,it[1]+1)}).then(function(ok){if(ok===false&&tok!==playTok){res(false);return}setTimeout(function(){step(k+1)},350)})}playTok=tok;step(0)})}
+/* plays a list of [orderIndex, ayahIdx] `reps` times; onAt(k) highlights.
+   تقدر البنت تضغط على أي آية فيبدأ منها، وتوقف مؤقتًا أو نهائيًا من شريط التشغيل */
+var PL=null,AYL={};
+function playList(list,reps,onAt,onRep,from){return new Promise(function(res){
+ var P={list:list,reps:reps,onAt:onAt||function(){},onRep:onRep,rep:0,done:false,box:null,paused:false,pend:null};
+ P.finish=function(v){if(P.done)return;P.done=true;P.pend=null;res(v);PB.sync()};
+ P.start=function(k){playTok++;try{AU.pause()}catch(e){}var tok=playTok;P.paused=false;P.pend=null;
+  function alive(){return tok===playTok&&PL===P&&!P.done}
+  function step(k){if(!alive())return;if(P.paused){P.pend=function(){step(k)};PB.sync();return}
+   if(k>=list.length){P.rep++;if(P.onRep)P.onRep(P.rep);if(P.rep>=P.reps){P.onAt(-1);P.finish(true);return}setTimeout(function(){step(0)},700);return}
+   P.k=k;P.onAt(k);if(!P.box){var nw=document.querySelector('.ayat .ay.now');P.box=nw?nw.closest('.ayat'):null}
+   var it=list[k],n=QURAN[it[0]].n;var pre=(it[1]===0&&n!==1&&n!==9&&k===0)?playAyah(1,1):Promise.resolve(true);
+   pre.then(function(){if(!alive())return false;return playAyah(n,it[1]+1)}).then(function(){if(!alive())return;setTimeout(function(){step(k+1)},350)})}
+  step(k);PB.sync()};
+ if(PL&&!PL.done)PL.finish(false);PL=P;P.start(from||0)})}
+/* شريط التشغيل: ⏸️ إيقاف مؤقت / ▶️ متابعة / ⏹️ إيقاف */
+var PB=(function(){var el=null,hideT=0;
+ function mk(){if(el)return el;el=document.createElement('div');el.className='plbar';el.innerHTML='<button id="pbP" aria-label="إيقاف مؤقت">⏸️</button><span>اضغطي على أي آية تبدين منها</span><button id="pbS" aria-label="إيقاف">⏹️</button>';document.body.appendChild(el);
+  el.querySelector('#pbP').onclick=function(){toggle()};el.querySelector('#pbS').onclick=function(){stopAudio()};return el}
+ function busy(){return (PL&&!PL.done)||!AU.paused}
+ function paused(){return PL&&!PL.done?PL.paused:AU.paused}
+ function toggle(){if(PL&&!PL.done){if(PL.paused){PL.paused=false;if(PL.pend){var f=PL.pend;PL.pend=null;f()}else AU.play().catch(function(){})}else{PL.paused=true;try{AU.pause()}catch(e){}}}else{if(AU.paused)AU.play().catch(function(){});else AU.pause()}sync()}
+ function sync(){clearTimeout(hideT);if(!busy()&&!(el&&el.dataset.p==='1')){hideT=setTimeout(function(){if(!busy())hide()},900);return}mk().classList.add('on');var p=paused();el.dataset.p=p?'1':'';var b=el.querySelector('#pbP');b.textContent=p?'▶️':'⏸️';b.setAttribute('aria-label',p?'متابعة':'إيقاف مؤقت')}
+ function hide(){clearTimeout(hideT);if(el){el.classList.remove('on');el.dataset.p=''}}
+ AU.addEventListener('play',function(){sync()});AU.addEventListener('ended',function(){setTimeout(sync,50)});
+ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.ayat .ay[data-k]');if(!a)return;var box=a.closest('.ayat'),k=+a.dataset.k;
+  if(PL&&PL.box===box&&k<PL.list.length){if(PL.done)playList(PL.list,1,PL.onAt,null,k);else PL.start(k);return}
+  var l=AYL[box.id];if(l&&k<l.length)playList(l,1,hl(box.id),null,k)});
+ return {sync:sync,hide:hide}})();
 function cacheSurah(i){var n=QURAN[i].n,list=[];for(var a=1;a<=QURAN[i].a.length;a++)list.push(aUrl(n,a));if(n!==1)list.push(aUrl(1,1));return caches.open(ACACHE).then(function(c){return Promise.all(list.map(function(u){return c.match(u).then(function(m){if(m)return;return fetch(u).then(function(r){if(r.ok)return c.put(u,r)}).catch(function(){})})}))})}
 /* ---------- Quran progress ---------- */
 function key(i,a){return i+':'+a}
@@ -189,7 +216,7 @@ VIEWS.session=function(){var t=today();if(dayType(t)==='rest'){go('home');return
 function nextStep(){stopAudio();SS.i++;SS.sub=0;drawStep();window.scrollTo(0,0)}
 function stepsBar(){return '<div class="steps" aria-label="الخطوة '+(SS.i+1)+' من '+SS.steps.length+'">'+SS.steps.map(function(s,k){return '<i class="'+(k<SS.i?'done':k===SS.i?'on':'')+'"></i>'}).join('')+'</div>'}
 function shell(title,sub,body){app.innerHTML='<div class="top"><button class="ib" data-back="home" aria-label="خروج">✕</button><div class="ttl">'+title+'<small>'+(sub||'')+'</small></div><button class="ib" data-act="mute" aria-label="المؤثرات">'+(S.mute?'🔇':'🔈')+'</button></div>'+stepsBar()+body}
-function ayatHTML(list,id){var h='<div class="ayat" id="'+(id||'ay')+'">';var prev=-1;list.forEach(function(x,k){var q=QURAN[x[0]];if(x[0]!==prev&&x[1]===0&&q.n!==1&&q.n!==9)h+='<span class="basm">'+QURAN[0].a[0]+'</span>';prev=x[0];h+='<span class="ay" data-k="'+k+'">'+q.a[x[1]]+' <span class="num">'+(x[1]+1)+'</span></span> '});return h+'</div>'}
+function ayatHTML(list,id){AYL[id||'ay']=list;var h='<div class="ayat" id="'+(id||'ay')+'">';var prev=-1;list.forEach(function(x,k){var q=QURAN[x[0]];if(x[0]!==prev&&x[1]===0&&q.n!==1&&q.n!==9)h+='<span class="basm">'+QURAN[0].a[0]+'</span>';prev=x[0];h+='<span class="ay" data-k="'+k+'">'+q.a[x[1]]+' <span class="num">'+(x[1]+1)+'</span></span> '});return h+'</div>'}
 function hl(id){return function(k){var box=document.getElementById(id||'ay');if(!box)return;box.querySelectorAll('.ay').forEach(function(e){e.classList.toggle('now',+e.dataset.k===k)});var n=box.querySelector('.ay.now');if(n&&n.scrollIntoView)n.scrollIntoView({block:'nearest',behavior:'smooth'})}}
 function counter(n,on){var h='<div class="counter" aria-label="'+on+' من '+n+'">';for(var i=0;i<n;i++)h+='<i class="'+(i<on?'on':'')+'">'+(i<on?'⭐':'')+'</i>';return h+'</div>'}
 function drawStep(){var s=SS.steps[SS.i];if(!s){go('home');return}STEP[s.k](s)}
